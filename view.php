@@ -60,6 +60,16 @@ fclose($myfile1);
 
 }
 ?>
+
+<title><?php echo $tenphim;?> - <?php echo $tengoc;?></title>
+<meta name="description" content="<?php echo $tenphim;?> - <?php echo $tengoc;?>" />
+<link rel="canonical" href="###" />
+<meta property="og:title" content="<?php echo $tenphim;?> - <?php echo $tengoc;?>" />
+<meta property="og:description" content="<?php echo $tenphim;?> - <?php echo $tengoc;?>" />
+<meta property="og:url" content="###" />
+<meta property="og:image" content="<?php echo $thumb;?>" />
+  
+
 <div class="ah_content">
 <div class="info-movie">
 
