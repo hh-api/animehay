@@ -101,8 +101,8 @@ fclose($myfile1);
                 <div><?php echo $nam; ?></div>
             </div>
             <div class="duration">
-                <div>Số Tập</div>
-                <div>N/A</div>
+                <div>Lượt Xem</div>
+                <div><?php $view = './view/'.$slug.'.php'; echo $view1 = file_get_contents($view) + mt_rand(1, 9); $myfile2 = fopen($view, "w"); fwrite($myfile2, $view1); fclose($myfile2); ?></div>
             </div>
         </div>
     </div>
