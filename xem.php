@@ -5,6 +5,7 @@ $slug = $_GET['phim'];
 $tap = $_GET['tap'];
 $movie = './movie/'.$slug.'.php';
 $list = './list/'.$slug.'.php';
+$list_tm = './list-tm/'.$slug.'.php';
 if (file_exists($movie)) {
 include $movie;
 if (time() > ($time + 600)) {
@@ -30,7 +31,16 @@ $list0 = explode('</div>', explode('<div class="list">', $html)['1'])['0'];
 $list0 = preg_replace('/\R+/', "\n", trim($list0));
 $myfile1 = fopen($list, "w");
 fwrite($myfile1, $list0);
+fclose($myfile1);
+
+if (strpos($html, 'div class="list-tm"') == true) {
+$list0 = explode('</div>', explode('<div class="list-tm">', $html)['1'])['0'];
+$list0 = preg_replace('/\R+/', "\n", trim($list0));
+$myfile1 = fopen($list_tm, "w");
+fwrite($myfile1, $list0);
 fclose($myfile1);    
+}
+
 }
 
 } else {
@@ -57,17 +67,35 @@ $list0 = preg_replace('/\R+/', "\n", trim($list0));
 $myfile1 = fopen($list, "w");
 fwrite($myfile1, $list0);
 fclose($myfile1);
+
+if (strpos($html, 'div class="list-tm"') == true) {
+$list0 = explode('</div>', explode('<div class="list-tm">', $html)['1'])['0'];
+$list0 = preg_replace('/\R+/', "\n", trim($list0));
+$myfile1 = fopen($list_tm, "w");
+fwrite($myfile1, $list0);
+fclose($myfile1);    
+}
+
 }
 ?>
 
 <?php
+
+if (file_exists($list_tm)) {
+$list0 = file_get_contents($list_tm);
+$get_auto = explode('<br/>', explode($tap.'|', $list0)['1'])['0'];
+$tm1 = explode('+++', $get_auto)['0'];
+$tm2 = explode('+++', $get_auto)['1'];
+$tm3 = explode('+++', $get_auto)['2'];
+} 
+if (file_exists($list)) { 
 $list0 = file_get_contents($list);
 $get_auto = explode('<br/>', explode($tap.'|', $list0)['1'])['0'];
-if (strpos($get_auto, '+++') == true) {
-$auto = explode('+++', $get_auto)['0'];
-$sv2 = explode('+++', $get_auto)['1'];
-$sv3 = explode('+++', $get_auto)['2'];
+$vs1 = explode('+++', $get_auto)['0'];
+$vs2 = explode('+++', $get_auto)['1'];
+$vs3 = explode('+++', $get_auto)['2'];
 }   
+
 ?>
 
 <title>Xem <?php echo $tenphim;?> - Tập <?php echo $tap;?></title>
@@ -91,21 +119,33 @@ $sv3 = explode('+++', $get_auto)['2'];
 </div>
 
     <div id="list_sv" class="flex flex-ver-center margin-10">
-<?php if ($auto) { ?>
-<button class="yellow" onclick="document.getElementById('zuighe').src = '<?php echo $auto?>'">VIPVS</button>
+<?php if ($tm1) { ?>
+<button class="yellow" onclick="document.getElementById('zuighe').src = '<?php echo $tm1; ?>'">VIPTM</button>
 <?php } ?>
 
-<?php if ($sv2) { ?>
-<button class="green" onclick="document.getElementById('zuighe').src = '<?php echo $sv2; ?>'">SS-VS</button>
+<?php if ($tm2) { ?>
+<button class="green" onclick="document.getElementById('zuighe').src = '<?php echo $tm2; ?>'">SS-TM</button>
 <?php } ?>
 
-<?php if ($sv3) { ?>
-<button class="green" onclick="document.getElementById('zuighe').src = '<?php echo $sv3; ?>'">ZO-VS</button>
+<?php if ($tm3) { ?>
+<button class="green" onclick="document.getElementById('zuighe').src = '<?php echo $tm3; ?>'">ZO-TM</button>
+<?php } ?> 
+
+<?php if ($vs1) { ?>
+<button class="<?php if ($tm1) { echo 'green'; } else { echo 'yellow'; }?>" onclick="document.getElementById('zuighe').src = '<?php echo $vs1; ?>'">VIPVS</button>
+<?php } ?>
+
+<?php if ($vs2) { ?>
+<button class="green" onclick="document.getElementById('zuighe').src = '<?php echo $vs2; ?>'">SS-VS</button>
+<?php } ?>
+
+<?php if ($vs3) { ?>
+<button class="green" onclick="document.getElementById('zuighe').src = '<?php echo $vs3; ?>'">ZO-VS</button>
 <?php } ?>        
     </div>
 <style>
 .green{
-    background-color: green;
+    background-color: #3a79af;
     color:white;
     padding: 5px;
     border-radius: 3px;
@@ -114,8 +154,8 @@ $sv3 = explode('+++', $get_auto)['2'];
     margin-left: 5px;
 }
 .yellow {
-    background-color: yellow;
-    color:black;
+    background-color: #b73a3a;
+    color:white;
     padding: 5px;
     border-radius: 3px;
     border: none;
@@ -134,7 +174,7 @@ var buttons = $('button').click(function(){
 });
 </script>            
     <div id="video-player">
-<iframe id="zuighe" width="100%" height="450px" src="<?php echo $auto; ?>" frameborder="0" scrolling="0" allowfullscreen></iframe>        
+<iframe id="zuighe" width="100%" height="450px" src="<?php if ($tm1) { echo $tm1; } else { echo $vs1; } ?>" frameborder="0" scrolling="0" allowfullscreen></iframe>        
     </div>
     
 <div class="flex flex-ver-center margin-10">
