@@ -8,7 +8,7 @@ if (file_exists($movie)) {
 include $movie;
 
 if (time() > ($time + 600)) {
-$html = file_get_contents('https://api-hh.blogspot.com/2023/04/'.$slug.'.html');
+$html = curl('https://api-hh.blogspot.com/2023/04/'.$slug.'.html');
 $info = explode('</div>', explode('<div class="home">', $html)['1'])['0'];
 $thumb = explode('"', explode('src="', $info)['1'])['0'];
 $noidung = explode('</td>', explode('max-width:1px;">', $info)['1'])['0'];
@@ -34,7 +34,7 @@ fclose($myfile1);
 }
 
 } else {
-$html = file_get_contents('https://api-hh.blogspot.com/2023/04/'.$slug.'.html');
+$html = curl('https://api-hh.blogspot.com/2023/04/'.$slug.'.html');
 $info = explode('</div>', explode('<div class="home">', $html)['1'])['0'];
 $thumb = explode('"', explode('src="', $info)['1'])['0'];
 $noidung = explode('</td>', explode('max-width:1px;">', $info)['1'])['0'];
@@ -109,7 +109,7 @@ fclose($myfile1);
     <div class="flex ah-frame-bg flex-wrap">
         <div class="flex flex-wrap flex-1">
 <?php
-$list0 = file_get_contents($list);
+$list0 = curl($list);
 $first = explode('|', $list0)['0'];
 ?>            
             <a href="<?php echo '/'.$first.'/'.$slug; ?>.html" class="padding-5-15 fs-35 button-default fw-500 fs-15 flex flex-hozi-center bg-lochinvar" title="Xem Ngay"><span class="material-icons-round">play_circle_outline</span></a>
