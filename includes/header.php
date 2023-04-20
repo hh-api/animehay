@@ -36,7 +36,7 @@ $description = 'Web xem phim anime online tiếng việt, phim anime vietsub, t�
 <link href="//cdn.jsdelivr.net/gh/hh-api/animehay@main/includes/styles.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script type="text/javascript" src="//cdn.jsdelivr.net/gh/hh-api/animehay@main/includes/fun.js"></script>
+<script src="//cdn.jsdelivr.net/gh/hh-api/animehay@main/includes/fun.js"></script>
 </head>
 
 <body class="scroll-bar">
