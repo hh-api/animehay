@@ -4,6 +4,7 @@ header('Cache-Control: max-age=300');
 $slug = $_GET['phim'];
 $movie = './movie/'.$slug.'.php';
 $list = './list/'.$slug.'.php';
+$list_tm = './list-tm/'.$slug.'.php';
 if (file_exists($movie)) {
 include $movie;
 if (time() > ($time + 600)) {
@@ -29,7 +30,16 @@ $list0 = explode('</div>', explode('<div class="list">', $html)['1'])['0'];
 $list0 = preg_replace('/\R+/', "\n", trim($list0));
 $myfile1 = fopen($list, "w");
 fwrite($myfile1, $list0);
+fclose($myfile1);  
+
+if (strpos($html, 'div class="list-tm"') == true) {
+$list0 = explode('</div>', explode('<div class="list-tm">', $html)['1'])['0'];
+$list0 = preg_replace('/\R+/', "\n", trim($list0));
+$myfile1 = fopen($list_tm, "w");
+fwrite($myfile1, $list0);
 fclose($myfile1);    
+}    
+
 }
 
 } else {
@@ -56,6 +66,14 @@ $list0 = preg_replace('/\R+/', "\n", trim($list0));
 $myfile1 = fopen($list, "w");
 fwrite($myfile1, $list0);
 fclose($myfile1);
+
+if (strpos($html, 'div class="list-tm"') == true) {
+$list0 = explode('</div>', explode('<div class="list-tm">', $html)['1'])['0'];
+$list0 = preg_replace('/\R+/', "\n", trim($list0));
+$myfile1 = fopen($list_tm, "w");
+fwrite($myfile1, $list0);
+fclose($myfile1);    
+}
 
 }
 ?>
