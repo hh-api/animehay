@@ -82,15 +82,17 @@ fclose($myfile1);
 <?php
 
 if (file_exists($list_tm)) {
-$list0 = file_get_contents($list_tm);
-$get_auto = explode('<br/>', explode($tap.'|', $list0)['1'])['0'];
+$list0 = '
+'.file_get_contents($list_tm);
+$get_auto = explode('<br/>', explode("\n".$tap.'|', $list0)['1'])['0'];
 $tm1 = explode('+++', $get_auto)['0'];
 $tm2 = explode('+++', $get_auto)['1'];
 $tm3 = explode('+++', $get_auto)['2'];
 } 
 if (file_exists($list)) { 
-$list0 = file_get_contents($list);
-$get_auto = explode('<br/>', explode($tap.'|', $list0)['1'])['0'];
+$list0 = '
+'.file_get_contents($list);
+$get_auto = explode('<br/>', explode("\n".$tap.'|', $list0)['1'])['0'];
 $vs1 = explode('+++', $get_auto)['0'];
 $vs2 = explode('+++', $get_auto)['1'];
 $vs3 = explode('+++', $get_auto)['2'];
