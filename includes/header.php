@@ -33,10 +33,10 @@ $description = 'Web xem phim anime online tiếng việt, phim anime vietsub, t�
     <meta property="og:site_name" content="###" />
     <meta property="og:locale" content="vi_VN" />
 <meta name="robots" content="index, follow, noodp">
-<link href="//cdn.jsdelivr.net/gh/hh-api/animehay@main/includes/styles.css" rel="stylesheet"/>
-<link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet"/>
+<link href="//cdn.jsdelivr.net/gh/hh-api/animehay@main/includes/styles.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
+<script type="text/javascript" src="//cdn.jsdelivr.net/gh/hh-api/animehay@main/includes/fun.js"></script>
 </head>
 
 <body class="scroll-bar">
@@ -117,8 +117,17 @@ $description = 'Web xem phim anime online tiếng việt, phim anime vietsub, t�
                 </div>
 
             </div>
+                        <div id="drop-down-3" class="dropdown-menu bg-black flex-column">
+                <div class="fw-500 margin-10 flex flex-hozi-center">
+                    <div class="flex-1 fs-19">Thông Báo</div>
+                    <div>
+                        <a href="/thong-bao">Xem tất cả</a>
+                    </div>
+                </div>
+                <div id="list-item-notification" class="scroll-bar"></div>
+            </div>
         </div>
-    <script>
+        <script>
             var live_search = new liveSearch;
             live_search.action();
             var isLoadNoti = false;
