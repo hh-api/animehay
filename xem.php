@@ -7,7 +7,6 @@ $movie = './movie/'.$slug.'.php';
 $list = './list/'.$slug.'.php';
 if (file_exists($movie)) {
 include $movie;
-
 if (time() > ($time + 600)) {
 $html = file_get_contents('https://api-hh.blogspot.com/2023/04/'.$slug.'.html');
 $info = explode('</div>', explode('<div class="home">', $html)['1'])['0'];
@@ -25,7 +24,7 @@ $nd = '<?php $time="'.time().'"; $tenphim="'.$tenphim.'"; $tengoc="'.$tengoc.'";
 $myfile = fopen($movie, "w");
 fwrite($myfile, $nd);
 fclose($myfile);
-include $option;
+include $movie;
 
 $list0 = explode('</div>', explode('<div class="list">', $html)['1'])['0'];
 $list0 = preg_replace('/\R+/', "\n", trim($list0));
@@ -51,7 +50,7 @@ $nd = '<?php $time="'.time().'"; $tenphim="'.$tenphim.'"; $tengoc="'.$tengoc.'";
 $myfile = fopen($movie, "w");
 fwrite($myfile, $nd);
 fclose($myfile);
-include $option;
+include $movie;
 
 $list0 = explode('</div>', explode('<div class="list">', $html)['1'])['0'];
 $list0 = preg_replace('/\R+/', "\n", trim($list0));
@@ -88,7 +87,7 @@ $sv3 = explode('+++', $get_auto)['2'];
 
         </div>
         <div class="ah-frame-bg fw-700 margin-10-0 bg-black">
-            <a href="#" class="fs-16 flex flex-hozi-center color-yellow border-style-1"><span class="material-icons-round margin-0-5">movie</span><?php echo $tenphim;?> - Tập <?php echo $tap;?></a>
+            <a href="/<?php echo $slug;?>.html" class="fs-16 flex flex-hozi-center color-yellow border-style-1"><span class="material-icons-round margin-0-5">movie</span><?php echo $tenphim;?> - Tập <?php echo $tap;?></a>
 </div>
 
     <div id="list_sv" class="flex flex-ver-center margin-10">
