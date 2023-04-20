@@ -6,7 +6,6 @@ $movie = './movie/'.$slug.'.php';
 $list = './list/'.$slug.'.php';
 if (file_exists($movie)) {
 include $movie;
-
 if (time() > ($time + 600)) {
 $html = curl('https://api-hh.blogspot.com/2023/04/'.$slug.'.html');
 $info = explode('</div>', explode('<div class="home">', $html)['1'])['0'];
@@ -24,7 +23,7 @@ $nd = '<?php $time="'.time().'"; $tenphim="'.$tenphim.'"; $tengoc="'.$tengoc.'";
 $myfile = fopen($movie, "w");
 fwrite($myfile, $nd);
 fclose($myfile);
-include $option;
+include $movie;
 
 $list0 = explode('</div>', explode('<div class="list">', $html)['1'])['0'];
 $list0 = preg_replace('/\R+/', "\n", trim($list0));
@@ -50,7 +49,7 @@ $nd = '<?php $time="'.time().'"; $tenphim="'.$tenphim.'"; $tengoc="'.$tengoc.'";
 $myfile = fopen($movie, "w");
 fwrite($myfile, $nd);
 fclose($myfile);
-include $option;
+include $movie;
 
 $list0 = explode('</div>', explode('<div class="list">', $html)['1'])['0'];
 $list0 = preg_replace('/\R+/', "\n", trim($list0));
@@ -109,7 +108,7 @@ fclose($myfile1);
     <div class="flex ah-frame-bg flex-wrap">
         <div class="flex flex-wrap flex-1">
 <?php
-$list0 = curl($list);
+$list0 = file_get_contents($list);
 $first = explode('|', $list0)['0'];
 ?>            
             <a href="<?php echo '/'.$first.'/'.$slug; ?>.html" class="padding-5-15 fs-35 button-default fw-500 fs-15 flex flex-hozi-center bg-lochinvar" title="Xem Ngay"><span class="material-icons-round">play_circle_outline</span></a>
