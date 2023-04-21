@@ -91,10 +91,14 @@ $description = 'Web xem phim anime online tiếng việt, phim anime vietsub, t�
 <div class="flex flex-wrap">
 <a href="/index.php?type=Tu Tiên" title="Thể Loại Tu Tiên">Tu Tiên</a>
 <a href="/index.php?type=Luyện Cấp" title="Thể Loại Luyện Cấp">Luyện Cấp</a>
+<a href="/index.php?type=Trùng Sinh" title="Thể Loại Trùng Sinh">Trùng Sinh</a>	
 <a href="/index.php?type=Viễn Tưởng" title="Thể Loại Viễn Tưởng">Viễn Tưởng</a>
 <a href="/index.php?type=Hành Động" title="Thể Loại Hành Động">Hành Động</a>
 <a href="/index.php?type=Cổ Trang" title="Thể Loại Cổ Trang">Cổ Trang</a>
+<a href="/index.php?type=Thần Thoại" title="Thể Loại Thần Thoại">Thần Thoại</a>
 <a href="/index.php?type=Dị Giới" title="Thể Loại Dị Giới">Dị Giới</a>
+<a href="/index.php?type=Tình Yêu" title="Thể Loại Tình Yêu">Tình Yêu</a>
+<a href="/index.php?type=Âm Nhạc" title="Thể Loại Âm Nhạc">Âm Nhạc</a>	
 </div>
 </div>
 
