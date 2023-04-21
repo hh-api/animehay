@@ -3,6 +3,7 @@ include 'includes/header.php';
 header('Cache-Control: max-age=500');
 $page = $_GET['page'];
 $type = $_GET['type'];
+$type = str_replace(' ', '%20', $type);
 ?>
 <title><?php echo $slogan;?></title>
 <meta name="description" content="<?php echo $description;?>" />
