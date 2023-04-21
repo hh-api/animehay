@@ -1,6 +1,6 @@
 <?php
 include 'includes/header.php';
-header('Cache-Control: max-age=300');
+header('Cache-Control: max-age=500');
 $slug = $_GET['phim'];
 $movie = './movie/'.$slug.'.php';
 $list = './list/'.$slug.'.php';
@@ -166,7 +166,9 @@ $get_tap = explode("|", $list1)['0'];
 </div>
 
 
-
+<script>
+localStorage.setItem('<td><a href="/<?php echo $slug; ?>.html"><img width="20px" src="<?php echo $thumb; ?>"/></a></td><td><a href="/<?php echo $slug; ?>.html"><?php echo $tenphim; ?><br/><?php echo $tengoc; ?></a></td>', '<?php echo date("l jS F Y h:i:s A"); ?>');  
+</script>
 <?php
 include 'includes/footer.php';
 ?>
