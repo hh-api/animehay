@@ -1,6 +1,6 @@
 <?php
 include 'includes/header.php';
-header('Cache-Control: max-age=300');
+header('Cache-Control: max-age=500');
 $slug = $_GET['phim'];
 $tap = $_GET['tap'];
 $movie = './movie/'.$slug.'.php';
@@ -121,27 +121,27 @@ $vs3 = explode('+++', $get_auto)['2'];
 </div>
 
     <div id="list_sv" class="flex flex-ver-center margin-10">
-<?php if ($tm1) { ?>
+<?php if (strlen($tm1) > 10) { ?>
 <button class="yellow" onclick="document.getElementById('zuighe').src = '<?php echo $tm1; ?>'">VIPTM</button>
 <?php } ?>
 
-<?php if ($tm2) { ?>
+<?php if (strlen($tm2) > 10) { ?>
 <button class="green" onclick="document.getElementById('zuighe').src = '<?php echo $tm2; ?>'">SS-TM</button>
 <?php } ?>
 
-<?php if ($tm3) { ?>
+<?php if (strlen($tm3) > 10) { ?>
 <button class="green" onclick="document.getElementById('zuighe').src = '<?php echo $tm3; ?>'">ZO-TM</button>
 <?php } ?> 
 
-<?php if ($vs1) { ?>
+<?php if (strlen($vs1) > 10) { ?>
 <button class="<?php if ($tm1) { echo 'green'; } else { echo 'yellow'; }?>" onclick="document.getElementById('zuighe').src = '<?php echo $vs1; ?>'">VIPVS</button>
 <?php } ?>
 
-<?php if ($vs2) { ?>
+<?php if (strlen($vs2) > 10) { ?>
 <button class="green" onclick="document.getElementById('zuighe').src = '<?php echo $vs2; ?>'">SS-VS</button>
 <?php } ?>
 
-<?php if ($vs3) { ?>
+<?php if (strlen($vs3) > 10) { ?>
 <button class="green" onclick="document.getElementById('zuighe').src = '<?php echo $vs3; ?>'">ZO-VS</button>
 <?php } ?>        
     </div>
