@@ -1,6 +1,6 @@
 <?php
 include 'includes/header.php';
-header('Cache-Control: max-age=300');
+header('Cache-Control: max-age=500');
 $page = $_GET['page'];
 $type = $_GET['type'];
 ?>
@@ -32,10 +32,8 @@ $type = $_GET['type'];
 </div>
 <div class="movies-list ah-frame-bg">
 <?php 
-
 if ($page > 1) {
-$page0 = 20*($page - 1); $page1 = $page0 + 1;
-$html = curl('https://www.blogger.com/feeds/5770045855602829491/posts/default?max-results='.$page0.'&start-index='.$page1);
+$html = curl('https://www.blogger.com/feeds/5770045855602829491/posts/default?max-results='.(20*($page - 1)).'&start-index='.(20*($page - 1) + 1));
 } elseif ($type) {
 $html = file_get_contents('https://www.blogger.com/feeds/5770045855602829491/posts/default/-/'.$type);    
 } else {
@@ -54,11 +52,12 @@ $stt = explode("&lt;/td&gt;", $phim['4'])['0'];
 $nam = explode("&lt;/td&gt;", $phim['5'])['0'];
 $hd = explode("&lt;/td&gt;", $phim['6'])['0'];
 $quocgia = explode("&lt;/td&gt;", $phim['7'])['0'];
-
 ?>    
         <div class="movie-item" id="movie-id-3755">
             <a href="/<?php echo $slug;?>.html" title="<?php echo $tenphim;?> - <?php echo $tengoc;?>">
-                <div class="episode-latest"> <span>Tập <?php echo $stt;?></span></div>
+                <div class="episode-latest"> <span>Tập <?php echo $stt;?></span>
+                </div>
+                <div style="position: absolute;padding: 5px;background-color: green;right: 5px; top 0px;"><?php echo $hd; ?></div>
                 <div>
                     <img src="<?php echo $thumb;?>" alt="<?php echo $tenphim;?> - <?php echo $tengoc;?>" />
                 </div>
