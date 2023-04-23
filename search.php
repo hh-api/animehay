@@ -28,8 +28,7 @@ $s1 = str_replace(' ', '+', $s);
 $all_links = explode('<div class="home">', $html);
 foreach ($all_links as $all_links) {
 if (strpos($all_links, '<div class="list">') == true) {  
-$url = explode("'", explode("window.location='/", $all_links)['1'])['0'];
-$slug = explode('/', $url)['2'];
+$slug = explode(".html", explode("window.location='/2023/04/", $all_links)['1'])['0'];
 $thumb = explode('"', explode('src="', $all_links)['1'])['0'];
 $phim = explode("<td>", $all_links);
 $tenphim = explode("</td>", $phim['2'])['0'];
