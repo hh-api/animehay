@@ -27,8 +27,9 @@ $type = str_replace(' ', '%20', $type);
         Mới cập nhật
     </div>
     <div class="margin-r-5 fw-500">
-        <a href="/index.php?type=NB" class="bg-red padding-5-10 border-default">Nhật Bản</a>
         <a href="/index.php?type=TQ" class="bg-blue padding-5-10 border-default">Trung Quốc</a>
+        <a href="/index.php?type=NB" class="bg-red padding-5-10 border-default">Nhật Bản</a>
+        <a href="/index.php?type=AM" class="bg-red padding-5-10 border-default">Âu Mỹ</a>
     </div>
 </div>
 <div class="movies-list ah-frame-bg">
