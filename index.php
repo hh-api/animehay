@@ -34,10 +34,12 @@ $type = str_replace(' ', '%20', $type);
 </div>
 <div class="movies-list ah-frame-bg">
 <?php 
-if ($page > 1) {
-$html = curl('https://www.blogger.com/feeds/5770045855602829491/posts/default?max-results='.(20*($page - 1)).'&start-index='.(20*($page - 1) + 1));
+if (($page > 1) and (!$type)) {
+$html = curl('https://www.blogger.com/feeds/5770045855602829491/posts/default?max-results=20&start-index='.(20*($page - 1) + 1));
+} elseif (($page > 1) and ($type)) {
+$html = file_get_contents('https://www.blogger.com/feeds/5770045855602829491/posts/default/-/'.$type.'?max-results=20&start-index='.(20*($page - 1) + 1));    
 } elseif ($type) {
-$html = file_get_contents('https://www.blogger.com/feeds/5770045855602829491/posts/default/-/'.$type);    
+$html = file_get_contents('https://www.blogger.com/feeds/5770045855602829491/posts/default/-/'.$type.'?max-results=20');     
 } else {
 $html = curl('https://www.blogger.com/feeds/5770045855602829491/posts/default?max-results=20');    
 }
@@ -54,7 +56,7 @@ $nam = explode("&lt;/td&gt;", $phim['5'])['0'];
 $hd = explode("&lt;/td&gt;", $phim['6'])['0'];
 $quocgia = explode("&lt;/td&gt;", $phim['7'])['0'];
 ?>    
-        <div class="movie-item" id="movie-id-3755">
+        <div class="movie-item">
             <a href="/<?php echo $slug;?>.html" title="<?php echo $tenphim;?> - <?php echo $tengoc;?>">
                 <div class="episode-latest"> <span>Tập <?php echo $stt;?></span>
                 </div>
@@ -71,9 +73,9 @@ $quocgia = explode("&lt;/td&gt;", $phim['7'])['0'];
 
 <div class="pagination">
 <a href="/index.php">Đầu</a>
-<a href="/index.php?page=<?php if ($page > 1) { echo $page - 1; } else { echo '1'; }?>">Trước</a>
+<a href="/index.php?page=<?php if ($page > 1) { echo $page - 1; } else { echo '1'; }?>&type=<?php echo $type; ?>">Trước</a>
 <a href="#"  class="active_page"><?php if ($page > 1) { echo $page; } else { echo '1'; }?></a>
-<a href="/index.php?page=<?php if ($page > 1) { echo $page + 1; } else { echo '2'; }?>">Sau</a>
+<a href="/index.php?page=<?php if ($page > 1) { echo $page + 1; } else { echo '2'; }?>&type=<?php echo $type; ?>">Sau</a>
 </div>
             
 <?php
