@@ -1,6 +1,6 @@
 <?php
 include 'includes/header.php';
-header('Cache-Control: max-age=500');
+header('Cache-Control: max-age=600');
 $page = $_GET['page'];
 $type = $_GET['type'];
 $type = str_replace(' ', '%20', $type);
@@ -39,9 +39,39 @@ $html = curl('https://www.blogger.com/feeds/5770045855602829491/posts/default?ma
 } elseif (($page > 1) and ($type)) {
 $html = file_get_contents('https://www.blogger.com/feeds/5770045855602829491/posts/default/-/'.$type.'?max-results=20&start-index='.(20*($page - 1) + 1));    
 } elseif ($type) {
-$html = file_get_contents('https://www.blogger.com/feeds/5770045855602829491/posts/default/-/'.$type.'?max-results=20');     
+$c_type = './cache/'.$type.'.php'; 
+if (file_exists($c_type)) {
+if((time() - filemtime($c_type)) < 1800) {    
+$html = file_get_contents($c_type);
 } else {
-$html = curl('https://www.blogger.com/feeds/5770045855602829491/posts/default?max-results=20');    
+$html = curl('https://www.blogger.com/feeds/5770045855602829491/posts/default/-/'.$type.'?max-results=20');
+$myfile = fopen($c_type, "w");
+fwrite($myfile, $html);
+fclose($myfile);    
+}
+} else {
+$html = curl('https://www.blogger.com/feeds/5770045855602829491/posts/default/-/'.$type.'?max-results=20');
+$myfile = fopen($c_type, "w");
+fwrite($myfile, $html);
+fclose($myfile);
+}
+} else {
+$c_index = './cache/index.php'; 
+if (file_exists($c_index)) {
+if((time() - filemtime($c_index)) < 1800) {    
+$html = file_get_contents($c_index);
+} else {
+$html = curl('https://www.blogger.com/feeds/5770045855602829491/posts/default?max-results=20');
+$myfile = fopen($c_index, "w");
+fwrite($myfile, $html);
+fclose($myfile);    
+}
+} else {
+$html = curl('https://www.blogger.com/feeds/5770045855602829491/posts/default?max-results=20');
+$myfile = fopen($c_index, "w");
+fwrite($myfile, $html);
+fclose($myfile);
+}
 }
 $all_links = explode('div class="home"', $html);
 foreach ($all_links as $all_links) {
