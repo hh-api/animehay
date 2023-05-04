@@ -1,6 +1,6 @@
 <?php
 include 'includes/header.php';
-header('Cache-Control: max-age=300');
+header('Cache-Control: max-age=600');
 $s = $_GET['s'];
 $s1 = str_replace(' ', '+', $s);
 ?>
@@ -13,7 +13,14 @@ $s1 = str_replace(' ', '+', $s);
 <meta property="og:image" content="https://media.discordapp.net/attachments/924155580124385280/1072038465899859999/zuighe4.png" />
     
 <div class="ah_content">
-
+<table width='100%'><tr>
+  <td width='14%'><a href='/index.php?type=T2'><button style='width:100%; color:white; padding: 10px 5px; background: #c31432;background: -webkit-linear-gradient(to right, #c31432, #240b36);background: linear-gradient(to right, #c31432, #240b36);'><b>T2</b></button></a></td>
+  <td width='14%'><a href='/index.php?type=T3'><button style='width:100%; color:white; padding: 10px 5px; background: #009fff; background: -webkit-linear-gradient(to right, #009fff, #ec2f4b);background: linear-gradient(to right, #009fff, #ec2f4b);'><b>T3</b></button></a></td>
+  <td width='14%'><a href='/index.php?type=T4'><button style='width:100%; color:white; padding: 10px 5px; background: #cc5333; background: -webkit-linear-gradient(to right, #cc5333, #23074d); background: linear-gradient(to right, #cc5333, #23074d);'><b>T4</b></button></a></td>
+  <td width='14%'><a href='/index.php?type=T5'><button style='width:100%; color:white; padding: 10px 5px; background: #000000; background: -webkit-linear-gradient(to left, #000000, #0f9b0f); background: linear-gradient(to left, #000000, #0f9b0f);'><b>T5</b></button></a></td>
+  <td width='14%'><a href='/index.php?type=T6'><button style='width:100%; color:white; padding: 10px 5px; background: #00bf8f; background: -webkit-linear-gradient(to right, #00bf8f, #001510); background: linear-gradient(to right, #00bf8f, #001510);'><b>T6</b></button></a></td>
+  <td width='14%'><a href='/index.php?type=T7'><button style='width:100%; color:white; padding: 10px 5px;background: #eb5757; background: -webkit-linear-gradient(to right, #eb5757, #000000); background: linear-gradient(to right, #eb5757, #000000);'><b>T7</b></button></a></td>
+  <td width='14%'><a href='/index.php?type=CN'><button style='width:100%; color:white; padding: 10px 5px;background: #03001e; background: -webkit-linear-gradient(to left, #03001e, #7303c0, #ec38bc, #fdeff9); background: linear-gradient(to left, #03001e, #7303c0, #ec38bc, #fdeff9);'><b>CN</b></button></a></td></tr></table>
 <div class="margin-10-0 bg-gray-2 flex flex-space-auto">
     <div class="fs-17 fw-700 padding-0-20 color-gray inline-flex height-40 flex-hozi-center bg-black border-l-t">
         Mới cập nhật
@@ -24,7 +31,7 @@ $s1 = str_replace(' ', '+', $s);
     </div>
 </div>
 <div class="movies-list ah-frame-bg">
-<?php $html = file_get_contents('https://api-hh.blogspot.com/search?q='.$s1);
+<?php $html = curl('https://api-hh.blogspot.com/search?q='.$s1);
 $all_links = explode('<div class="home">', $html);
 foreach ($all_links as $all_links) {
 if (strpos($all_links, '<div class="list">') == true) {  
@@ -41,6 +48,7 @@ $quocgia = explode("</td>", $phim['7'])['0'];
         <div class="movie-item" id="movie-id-3755">
             <a href="/<?php echo $slug;?>.html" title="<?php echo $tenphim;?> - <?php echo $tengoc;?>">
                 <div class="episode-latest"> <span>Tập <?php echo $stt;?></span></div>
+                <div style="position: absolute;padding: 5px;background-color: green;right: 5px; top 0px;"><?php echo $hd; ?></div>
                 <div>
                     <img src="<?php echo $thumb;?>" alt="<?php echo $tenphim;?> - <?php echo $tengoc;?>" />
                 </div>
